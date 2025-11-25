@@ -1,17 +1,16 @@
 :root{
   --verde-oscuro: #0F4934;
-  --verde-claro:  #BEE2C8;
+  --verde-claro:  #466f53;
   --azul-rio:     #4C8CA8;
   --azul-oscuro:  #143A52;
   --cafe:         #8B4F32;
-  --text-light: #F8EAD7;    /* tono crema claro para trazos y texto sobre fondos oscuros */
-  --text-dark:  #0F4934;    /* para trazos/íconos sobre fondo claro */
+  --text-light: #F8EAD7;  
+  --text-dark:  #0F4934;    
   --max-width: 900px;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
   --graphic-size: 180px;
 }
 
-/* base */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -26,7 +25,6 @@ body{
   scroll-behavior:smooth;
 }
 
-/* slide layout */
 .slide{
   min-height:100vh;
   display:flex;
@@ -36,7 +34,6 @@ body{
   position:relative;
 }
 
-/* inner */
 .inner{
   width:100%;
   max-width:var(--max-width);
@@ -44,7 +41,6 @@ body{
   text-align:center;
 }
 
-/* titles and text */
 .main-title{
   font-size: clamp(36px, 9vw, 86px);
   line-height:0.95;
@@ -68,11 +64,9 @@ body{
   color:var(--text-light);
 }
 
-/* slide 8 text forced to white (user requested) */
 #slide-8 .text-white { color: #ffffff; }
 #slide-8 p { color: #ffffff; }
 
-/* controls */
 .controls { margin-top: 24px; display:flex; gap:12px; justify-content:center; align-items:center; }
 .btn{
   background: transparent;
@@ -86,7 +80,6 @@ body{
 }
 .btn.link{ border-color: rgba(255,255,255,0.06); }
 
-/* graphic-line: minimal stroke icons (currentColor driven) */
 .graphic-line{
   position:absolute;
   width:var(--graphic-size);
@@ -97,11 +90,10 @@ body{
   padding:6px;
   background: transparent;
   border: none;
-  color: var(--text-light); /* overriden per slide when needed */
+  color: var(--text-light); /
   cursor: pointer;
 }
 
-/* positions */
 .float-top-right { top: 8%; right: 6%; transform: translateZ(0); }
 .float-top-left  { top: 6%; left: 6%; transform: translateZ(0); }
 .float-left      { top: 14%; left: 4%; transform: translateZ(0); }
@@ -109,11 +101,9 @@ body{
 
 .graphic-line svg { display:block; width:100%; height:auto; pointer-events:none; }
 
-/* subtle interaction styles (very small) */
 .graphic-line:active { transform: translateY(-2px) scale(1.01); }
 .graphic-line:focus { outline: 3px solid rgba(255,255,255,0.06); outline-offset:6px; border-radius:8px; }
 
-/* animation helper classes (short and subtle) */
 .play-bounce { animation: bounce 280ms cubic-bezier(.2,.9,.2,1); transform-origin:center; }
 .play-sway   { animation: sway 380ms cubic-bezier(.2,.9,.2,1); transform-origin:center; }
 .play-wave   { animation: wave 360ms cubic-bezier(.2,.9,.2,1); transform-origin:center; }
@@ -135,16 +125,8 @@ body{
   100% { transform: translateY(0) scaleX(1); }
 }
 
-/* color adjustments for slide backgrounds:
-   - change stroke color (currentColor) and text color by slide via data-color mapping in JS */
 @media (max-width:900px){
   :root { --graphic-size: 140px; }
   .float-left { top: 8%; left: 6%; }
   .float-top-right { top: 6%; right: 4%; }
-}
-
-/* reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .play-bounce, .play-sway, .play-wave { animation: none !important; transform:none !important; }
-  body { scroll-behavior: auto; }
 }
